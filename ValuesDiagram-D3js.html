@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<style>
+  .axis path,
+  .axis line{
+    fill: none;
+    stroke: black;
+  }
+
+  path.line{
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+  }
+
+  .tick text{
+    font-size: 12px;
+  }
+
+  .tick line{
+    opacity: 0.2;
+  }
+
+polyline {
+  fill: none;
+}
+</style>
+<svg width="900" height="500"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+var margin = {top: 20, right: 100, bottom: 30, left: 100},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var xScale = d3.scaleLinear()
+    .domain([0, 20])
+    .range([0, width]);
+
+var yScale = d3.scaleLinear()
+    .domain([0, 20])
+    .range([height, 0]);
+
+var svg = d3.select("body svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var lines = [];
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(9.5))
+	.attr("y1", yScale(15))
+	.attr("x2", xScale(12))
+	.attr("y2", yScale(20))
+	.attr("stroke-width", 2)
+	.attr("stroke", "black") );
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(14.5))
+	.attr("y1", yScale(15))
+	.attr("x2", xScale(12))
+	.attr("y2", yScale(20))
+	.attr("stroke-width", 2)
+	.attr("stroke", "black") );
+
+
+var circle = [];
+
+circle.push( svg.append("circle")
+  .attr("cx", xScale(12))
+  .attr("cy", yScale(18))
+  .attr("r", 4));
+
+circle.push( svg.append("circle")
+  .attr("cx", xScale(11))
+  .attr("cy", yScale(16))
+  .attr("r", 4));
+
+circle.push( svg.append("circle")
+  .attr("cx", xScale(13))
+  .attr("cy", yScale(16))
+  .attr("r", 4));
+
+</script>
