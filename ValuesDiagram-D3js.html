@@ -25,7 +25,11 @@ polyline {
 }
 </style>
 <svg width="900" height="500"></svg>
+
+<div id="bracketsTip" style="position: absolute">Sustainable</div>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 var margin = {top: 20, right: 100, bottom: 30, left: 100},
     width = 960 - margin.left - margin.right,
@@ -67,18 +71,109 @@ lines.push( svg.append("line")
 var circle = [];
 
 circle.push( svg.append("circle")
-  .attr("cx", xScale(12))
-  .attr("cy", yScale(18))
-  .attr("r", 4));
+                   .attr("cx", xScale(12))
+	   .attr("cy", yScale(18))
+	   .attr("r", 4));
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(12.5))
+	.attr("y1", yScale(19))
+	.attr("x2", xScale(12))
+	.attr("y2", yScale(18))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(12))
+	.attr("y1", yScale(10))
+	.attr("x2", xScale(12))
+	.attr("y2", yScale(18))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines['sustainable'] = svg.append("line")
+	.attr("class", "sustainable")
+	.attr("x1", xScale(12.5))
+	.attr("y1", yScale(19))
+	.attr("x2", xScale(17))
+	.attr("y2", yScale(19))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black");
+
+
+
 
 circle.push( svg.append("circle")
-  .attr("cx", xScale(11))
-  .attr("cy", yScale(16))
-  .attr("r", 4));
+                   .attr("cx", xScale(11))
+                   .attr("cy", yScale(16))
+                   .attr("r", 4));
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(11))
+	.attr("y1", yScale(10))
+	.attr("x2", xScale(11))
+	.attr("y2", yScale(16))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(11))
+	.attr("y1", yScale(16))
+	.attr("x2", xScale(10.5))
+	.attr("y2", yScale(17))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines['local'] = svg.append("line")
+	.attr("x1", xScale(7))
+	.attr("y1", yScale(17))
+	.attr("x2", xScale(10.5))
+	.attr("y2", yScale(17))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black");
+
+
 
 circle.push( svg.append("circle")
-  .attr("cx", xScale(13))
-  .attr("cy", yScale(16))
-  .attr("r", 4));
+                   .attr("cx", xScale(13))
+	   .attr("cy", yScale(16))
+	   .attr("r", 4));
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(13))
+	.attr("y1", yScale(10))
+	.attr("x2", xScale(13))
+	.attr("y2", yScale(16))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines.push( svg.append("line")
+	.attr("x1", xScale(13))
+	.attr("y1", yScale(16))
+	.attr("x2", xScale(13.5))
+	.attr("y2", yScale(17))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black") );
+
+lines['zerowaste'] = svg.append("line")
+	.attr("x1", xScale(18))
+	.attr("y1", yScale(17))
+	.attr("x2", xScale(13.5))
+	.attr("y2", yScale(17))
+	.attr("stroke-width", 1)
+	.attr("stroke", "black");
+
+
+var leftPos = $("line.sustainable").position().left +10
+  , topPos = $("line.sustainable").position().top - 20;
+
+console.log(leftPos + " " + topPos);
+
+    d3.select("#bracketsTip")
+        .style("left", leftPos + "px")
+        .style("top", topPos + "px")
+    .transition()
+        .duration(250)
+        .style("opacity", 1.0);
 
 </script>
